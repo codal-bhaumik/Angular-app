@@ -4,7 +4,7 @@ env:
     CACHE_CONTROL: "86400"
     S3_BUCKET: "{{s3_bucket_url}}"
     BUILD_FOLDER: "dist"
-    APP_NAME
+    APP_NAME: "my-angular-app"
 phases:
   install:
     runtime-versions:
@@ -16,8 +16,9 @@ phases:
     commands:
       - echo build process started now
       - ng build --configuration=production
-artifacts:
-  files:
-	- '**/*'
-  base-directory: 'dist*'
-  discard-paths: yes
+post_build:
+    commands:
+      - echo build process finished, we should uplload to S3 now
+      - cd dist/$APP_NAME
+      - ls -la
+      - aws s3 sync . s3://codal-website --delete
