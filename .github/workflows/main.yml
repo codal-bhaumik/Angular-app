@@ -13,7 +13,7 @@ on:
         type: choice
         description: Select project to build
         options: 
-          - for folder in $GITHUB_WORKSPACE; do echo $folder; done
+          for folder in $GITHUB_WORKSPACE; do echo "/- $folder"; done
 
 jobs:
   # define job to build docker image
