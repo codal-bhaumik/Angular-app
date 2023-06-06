@@ -1,24 +1,34 @@
-name: Workflow Dispatch with Choices
+name: Workflow Dispatch with Array Choices
 
 on:
-  workflow_dispatch:
-    inputs:
-      choice:
-        description: 'Choose an option'
-        required: true
-        type: select
-        options:
-          - option1
-          - option2
-          - option3
+  workflow_dispatch
 
 jobs:
-  process_choice:
+  generate_choices:
     runs-on: ubuntu-latest
+    outputs:
+      choices: ${{ steps.set_choices.outputs.choices }}
 
+    steps:
+      - name: Set Choices
+        id: set_choices
+        run: |
+          choices=("option1" "option2" "option3")
+          echo "::set-output name=choices::${choices[*]}"
+
+  process_choice:
+    needs: generate_choices
+    runs-on: ubuntu-latest
     steps:
       - name: Process Choice
         run: |
+          choices=(${{ needs.generate_choices.outputs.choices }})
           chosen_option="${{ github.event.inputs.choice }}"
-          echo "Chosen Option: $chosen_option"
-          # Add your workflow steps based on the chosen option
+
+          if [[ " ${choices[*]} " == *" $chosen_option "* ]]; then
+            echo "Chosen Option: $chosen_option"
+            # Add your workflow steps based on the chosen option
+          else
+            echo "Invalid choice: $chosen_option"
+            exit 1
+          fi
