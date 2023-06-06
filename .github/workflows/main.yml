@@ -1,22 +1,24 @@
-name: Workflow Dispatch with Loop
+name: Workflow Dispatch with Choices
 
 on:
   workflow_dispatch:
     inputs:
-      iterations:
-        description: 'Number of iterations'
+      choice:
+        description: 'Choose an option'
         required: true
+        type: select
+        options:
+          - option1
+          - option2
+          - option3
 
 jobs:
-  run_iterations:
+  process_choice:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
 
-      - name: Run Iterations
+    steps:
+      - name: Process Choice
         run: |
-          for i in $(seq 1 ${{ github.event.inputs.iterations }}); do
-            echo "Iteration: $i"
-            # Add your desired commands for each iteration here
-          done
+          chosen_option="${{ github.event.inputs.choice }}"
+          echo "Chosen Option: $chosen_option"
+          # Add your workflow steps based on the chosen option
