@@ -14,7 +14,8 @@ jobs:
         id: set_choices
         run: |
           choices=("option1" "option2" "option3")
-          echo "::set-output name=choices::${choices[*]}"
+          #echo "::set-output name=choices::${choices[*]}"
+          echo "choices::${choices[*]}" >> $GITHUB_OUTPUT
 
   process_choice:
     needs: generate_choices
