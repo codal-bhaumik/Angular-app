@@ -1,34 +1,22 @@
-name: Build Docker Images
+name: Workflow Dispatch with Loop
 
 on:
-  # run it on push to the default repository branch
-  push:
-    branches:
-      - master
-      - bcapp
-
   workflow_dispatch:
     inputs:
-      name:
-        type: choice
-        description: Select project to build
-        options: 
-          for folder in $GITHUB_WORKSPACE; do echo "/- $folder"; done
+      iterations:
+        description: 'Number of iterations'
+        required: true
 
 jobs:
-  # define job to build docker image
-  build-container:
-    name: Build Docker image
-    # run only when code is compiling and tests are passing
+  run_iterations:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      # setup Docker build action
-      - name: Set up Docker Build
-        uses: docker/setup-buildx-action@v2
-        with:
-          context: .
-          file: ./bcapp/Dockerfile
+      - name: Run Iterations
+        run: |
+          for i in $(seq 1 ${{ github.event.inputs.iterations }}); do
+            echo "Iteration: $i"
+            # Add your desired commands for each iteration here
+          done
