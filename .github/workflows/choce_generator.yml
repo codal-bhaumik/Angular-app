@@ -1,0 +1,19 @@
+name: Choices Generator
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate_choices:
+    runs-on: ubuntu-latest
+    outputs:
+      choices: ${{ steps.set_choices.outputs.choices }}
+
+    steps:
+      - name: Set Choices
+        id: set_choices
+        run: |
+          choices=("option1" "option2" "option3")
+          echo "::set-output name=choices::${choices[*]}"
