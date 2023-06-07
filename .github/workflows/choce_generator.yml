@@ -22,12 +22,10 @@ on:
 jobs:
   generate_choices:
     runs-on: ubuntu-latest
-    outputs:
-      choices: ${{ steps.set_choices.outputs.choices }}
 
     steps:
       - name: Set Choices
         id: set_choices
         run: |
-          choices=("get" "post" "patch")
-          echo "choices=${choices[*]}" >> $GITHUB_OUTPUT
+          echo ${{ github.event.inputs.command }}
+
