@@ -47,7 +47,7 @@ jobs:
         echo $folder_names
         while IFS= read -r folder; do
           folder_names+=("$folder")
-        done < <(find . -type d -depth 1 -exec basename {} \;)
+        done < <(find . -type d -maxdepth 1 -exec basename {} \;)
         for $file in $folder_names; do echo $file;done
         # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
