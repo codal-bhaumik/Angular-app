@@ -39,7 +39,7 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: gifting
+        ECR_REPOSITORY: bigcomm-bcapps-gifting
       run: |
         pwd
         folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
