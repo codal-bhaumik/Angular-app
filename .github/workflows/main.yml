@@ -41,6 +41,7 @@ jobs:
       run: |
         pwd
         folder_names=()
+        echo $folder_names
         while IFS= read -r folder; do
           folder_names+=("$folder")
         done < <(find . -type d -depth 1 -exec basename {} \;)
