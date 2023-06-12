@@ -45,6 +45,6 @@ jobs:
         pwd
         folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
         echo $folder_names
-        #for $file in $folder_names; do echo $file;done
+        for file in $folder_names; do echo $file;done
         # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
