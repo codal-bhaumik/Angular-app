@@ -43,7 +43,7 @@ jobs:
         IMAGE_TAG: nodejs_demo_image
       run: |
         pwd
-        folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \;)
+        folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
         echo $folder_names
         #for $file in $folder_names; do echo $file;done
         # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
