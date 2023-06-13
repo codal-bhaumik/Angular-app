@@ -24,5 +24,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: folder-artifact
+          name: env-artifact
           path: $GITHUB_ENV
