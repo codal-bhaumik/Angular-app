@@ -14,8 +14,7 @@ jobs:
       - name: Set folder names variable
         run: |
           pwd
-          echo "Hello"
-          folder_names=$(find src -type d )
+          folder_names=$(ls -lah)
           echo $folder_names
           
       - name: Upload Artifact
