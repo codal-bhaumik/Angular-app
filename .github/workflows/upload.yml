@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Set folder names variable
-        run: ls
+        run: ls src
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
