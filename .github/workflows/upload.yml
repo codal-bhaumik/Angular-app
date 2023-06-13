@@ -14,7 +14,7 @@ jobs:
       - name: Set folder names variable
         run: |
           pwd
-          folder_names=$(find ./bcapps  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
+          folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
           echo $folder_names
 
       - name: Upload Artifact
