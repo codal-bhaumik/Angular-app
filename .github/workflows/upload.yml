@@ -15,7 +15,7 @@ jobs:
         run: |
           pwd
           echo "Hello"
-          folder_names=$(find . -type d )
+          folder_names=$(find src -type d )
           echo $folder_names
           
       - name: Upload Artifact
