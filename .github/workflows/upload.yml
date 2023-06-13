@@ -18,10 +18,10 @@ jobs:
         run: |
           pwd
           FOLDER_NAMES=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
-          echo $FOLDER_NAMES >> $GITHUB_ENV
+          echo $FOLDER_NAMES >> $GITHUB_OUTPUT
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: folder-artifact
-          path: $GITHUB_ENV
+          path: $GITHUB_OUTPUT
