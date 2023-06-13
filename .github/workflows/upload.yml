@@ -17,11 +17,11 @@ jobs:
       - name: Set folder names variable
         run: |
           pwd
-          folder_names=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
-          echo $folder_names
+          FOLDER_NAMES=$(find ./src  -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
+          echo $FOLDER_NAMES >> $GITHUB_ENV
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: folder-artifact
-          path: $folder_names
+          path: $GITHUB_ENV
