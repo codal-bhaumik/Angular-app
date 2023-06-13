@@ -8,6 +8,7 @@ on:
 
 jobs:
   deploy:
+    needs: Workflow 1
     runs-on: ubuntu-latest
 
     steps:
@@ -18,5 +19,4 @@ jobs:
 
       - name: Load Environment Variables
         run: |
-          export $(cat ${{ github.workspace }}/$ARTIFACT_PATH)
           echo "API_KEY: $FOLDER"
