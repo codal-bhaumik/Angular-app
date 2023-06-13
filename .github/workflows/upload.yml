@@ -1,9 +1,9 @@
 name: Workflow 1
 
 on:
-  push:
-    branches:
-      - main
+#   push:
+#     branches:
+#       - main
   workflow_dispatch:
   
 jobs:
@@ -15,7 +15,7 @@ jobs:
         run: |
           pwd
           echo "Hello"
-          folder_names=$(find . -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
+          folder_names=$(find ./Angular-app -maxdepth 1 -type d -exec basename {} \; | tail -n +2)
           echo $folder_names
           
       - name: Upload Artifact
