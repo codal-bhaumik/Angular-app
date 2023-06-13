@@ -1,0 +1,21 @@
+name: Workflow 2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: folder-artifact
+
+      - name: Load Environment Variables
+        run: |
+          export $(cat ${{ github.workspace }}/$ARTIFACT_PATH)
+          echo "API_KEY: $folder_names"
